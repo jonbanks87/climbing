@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>RedWall.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="route-red-wall-510b-6p">Route: Red Wall (5.10b, 6p)</h1>
+<h3 id="a-short-day-climb-at-13000-feet-or-a-nice-link-up-into-a-route-on-the-diamond">A short day climb at 13,000 feet, or a nice link-up into a route on the Diamond.</h3>
+<p><img src="file:///c:/Users/EC/Documents/Climbing/Red Wall - Chasm View Wall -Longs/p1.jpg" alt="p1"></p>
+<h2 id="intro">INTRO</h2>
+<p>My sister Jenny was passing through Boulder, so we set aside the weekend to do some climbing together. She had never climbed on the Diamond, and being that the Diamond is my favorite chunk of rock to climb in the area (or perhaps anywhere), we decided that the Casual Route would be a fun objective (I had climbed the Casual Route the previous summer, but it had been wet so I had always wanted to come back and climb it again when dry). But the Casual Route can be quite a conga line on the weekend. So we decided a good plan would be to approach The Diamond via a route on Chasm View Wall. This way we would be guaranteed at least one good route, and hopefully it would put us behind the morning rush to the base of the Casual Route.</p>
+<p>We climbed the Red Wall route on Chasm View Wall. I had climbed Directissima the previous weekend, and had been eyeing Red Wall, since it sounded like a route on par with the high quality and low 5.10 difficulty of Directissima. Red Wall climbs a series of right-facing flake-dihedrals a couple of hundred feet left of Directissima. Jenny and I enjoyed this route, finding the climbing to be continually steep and interesting and the rock is very good. As had been the case the previous weekend, we were the only party on the entire wall, despite the sunny aspect and mellow approach. For comparison, there were half a dozen parties huddled at the base of the Casual Route, dodging icefall and waiting their turn.</p>
+<p>One unique part of the day was watching giant icicles slough off the upper walls of the Diamond as they were melted off by the sun's light. We were glad to not be one of the 10 or so parties climbing on the Diamond below the sloughing ice, and fortunately no one seemed to get hit.</p>
+<p>Pitch 5 of the Red Wall route ends on a band of dark rock that cuts across the face of the wall all the way from Broadway Ledge to the Chasm View ridgeline. The Chasm Cut-Off route (5.7) traverses this ledge system. Here, most parties cut right to the ridgeline, but we decided to cut left and traverse to Broadway Ledge. I had been intrigued by the idea of doing this traverse directly to Broadway rather than having to go up to the Chasm View Raps. The traverse from the top of Red Wall was mostly 4th class, with a few moves of low 5th. Cool—a new way to get to the base of the Diamond! And plus avoid the North Chimney!</p>
+<p>We arrived at the base of the Casual Route just after 11am. Of the half dozen parties we had seen at the base of the route earlier that morning, a couple had bailed due to discomfort with the morning ice bombs, and the last party of the Casual Route conga line had headed up about an hour previous. Also, by this time most of the ice had sloughed off the upper walls, apart from two ginormous icicles hanging below the D1 chimney far above. But these seemed to be sticking to the wall, which was now in the shade. So we started up the Casual Route, feeling good about our time and the conditions. The first pitch is pretty easy and went quite quickly. But when I arrived at the belay at the top of the pitch, I encountered the party who had started up an hour earlier. The belayer assured me they would blast up the pitch and be out of our way in no time, but an hour later they were still blasting their way up Pitch 2. So Jenny and I decided to call it, in interest of getting out at a reasonable hour and climbing the next day. Too bad.</p>
+<p>All in all, a great day out with my sister on a fun 5-pitch route at 13,000 feet, and figuring out a new means of access to the base of the Diamond. I suppose our failure to get up the Diamond just means that Jenny will have to come visit again. The following page provides an overlay and photos from the climb of Red Wall on Chasm View Wall. Enjoy.</p>
+<h2 id="overlay">OVERLAY</h2>
+<p><img src="file:///c:/Users/EC/Documents/Climbing/Red Wall - Chasm View Wall -Longs/overlaychasmview.jpg" alt="overlay"></p>
+<h2 id="pitch-by-pitch-photos">PITCH BY PITCH PHOTOS</h2>
+<p>Approach Chasm View Wall via Chasm View Lake. From the right edge of the Mills Glacier, scramble (mostly 3rd, some 4th) up and right along the long ramp system, continuing up and right to the highest ledges, heading for a smooth gray ramp slanting up and left, just left of the Directissima corner system.</p>
+<h2 id="approach">Approach</h2>
+<ol>
+<li>Approach ramp at base of Chasm View Wall.</li>
+</ol>
+<p><img src="file:///c:/Users/EC/Documents/Climbing/Red Wall - Chasm View Wall -Longs/1.jpg" alt="1"></p>
+<ol start="2">
+<li>The smooth gray ramp that starts off the route.</li>
+</ol>
+<p><img src="file:///c:/Users/EC/Documents/Climbing/Red Wall - Chasm View Wall -Longs/2.jpg" alt="2"></p>
+<ol start="3">
+<li>Ice on the upper walls of the Diamond. On one hand, it was cool to watch the giant icicles slough off as they were warmed by the sun's light, but on the other hand it was a bit terrifying to watch climbers below dodging the ice missiles.</li>
+</ol>
+<p><img src="file:///c:/Users/EC/Documents/Climbing/Red Wall - Chasm View Wall -Longs/3.jpg" alt="3"></p>
+<h2 id="pitch-1">Pitch 1</h2>
+<p>5.7. Climb to the top of the ramp and belay beneath a clean right-facing dihedral (10d option) or traverse 50 feet left and belay at the bottom of an undercut right-facing dihedral (5.8 option).</p>
+<ol start="4">
+<li>Jenny starting up Pitch 1 in the morning sunlight. Nice view of the Diamond from here!</li>
+</ol>
+<p><img src="file:///c:/Users/EC/Documents/Climbing/Red Wall - Chasm View Wall -Longs/4.jpg" alt="4"></p>
+<ol start="5">
+<li>Pitch 1 ramp.</li>
+</ol>
+<img src="file:///c:/Users/EC/Documents/Climbing/Red Wall - Chasm View Wall -Longs/5.jpg" alt="7" height="500">
+<ol start="6">
+<li>The 10d option for Pitch 2. We continued left for 50 feet to the base of the 5.8 option for Pitch 2.</li>
+</ol>
+<h2 id="pitch-2">Pitch 2</h2>
+<p>5.8. Jam a hand crack up the dihedral and past a wide section to a grassy ledge. Scramble up to a terrace beneath several flake systems.</p>
+<ol start="7">
+<li>The handcrack at the start of Pitch 2.</li>
+</ol>
+<img src="file:///c:/Users/EC/Documents/Climbing/Red Wall - Chasm View Wall -Longs/7.jpg" alt="7" height="500">
+<h2 id="pitch-3">Pitch 3</h2>
+<p>5.9. Choose the left-hand of several steep flakes and then climb a wide crack (bomber laybacks inside) to the top of a huge flake.</p>
+<ol start="8">
+<li>Jenny starting off Pitch 3.</li>
+</ol>
+<p><img src="file:///c:/Users/EC/Documents/Climbing/Red Wall - Chasm View Wall -Longs/8.jpg" alt=""></p>
+<ol start="9">
+<li>Climbing in an opening between flakes on the upper part of Pitch 3. Fun climbing with bomber laybacks inside.</li>
+</ol>
+<p><img src="file:///c:/Users/EC/Documents/Climbing/Red Wall - Chasm View Wall -Longs/9.jpg" alt=""></p>
+<h2 id="pitch-4">Pitch 4</h2>
+<p>5.10b. Climb a right-facing corner towards the left edge of the overhang in the center of the wall. Work up and right across smaller dihedrals, undercling the roof, and set a belay at the right end of the roof. The traverse can be made 40 feet below the roof.</p>
+<ol start="10">
+<li>Looking up Pitch 4. The crux 10b roof looms above.</li>
+</ol>
+<p><img src="file:///c:/Users/EC/Documents/Climbing/Red Wall - Chasm View Wall -Longs/10.jpg" alt=""></p>
+<ol start="11">
+<li>The crux 10b roof at the top of Pitch 4.</li>
+</ol>
+<p><img src="file:///c:/Users/EC/Documents/Climbing/Red Wall - Chasm View Wall -Longs/11.jpg" alt=""></p>
+<ol start="12">
+<li>Jenny following Pitch 4.</li>
+</ol>
+<p><img src="file:///c:/Users/EC/Documents/Climbing/Red Wall - Chasm View Wall -Longs/12.jpg" alt=""></p>
+<h2 id="pitch-5">Pitch 5</h2>
+<p>5.10a. Climb past the right end of the roof and follow a right-facing corner towards a roof. Work right across a slab and climb a V-shaped chimney to a huge ledge in a band of dark rock.</p>
+<ol start="13">
+<li>Pitch 5 awesomeness.</li>
+</ol>
+<p><img src="file:///c:/Users/EC/Documents/Climbing/Red Wall - Chasm View Wall -Longs/13.jpg" alt=""></p>
+<h2 id="pitch-6">Pitch 6</h2>
+<p>3 options!</p>
+<p>(1) Head right along the dark band of rock on Chasm Cut-Off to the ridge crest, 5.7.</p>
+<p>(2) Climb the great right-facing dihedral above the belay to the ridge crest, 5.9+.</p>
+<p>(3) Head left along the dark band on Chasm Cut-Off to Broadway Ledge, 4th to low 5th.</p>
+<ol start="14">
+<li>Option 1: Right along the dark band of rock to the ridge crest.</li>
+</ol>
+<img src="file:///c:/Users/EC/Documents/Climbing/Red Wall - Chasm View Wall -Longs/14.jpg" alt height="500">
+<ol start="15">
+<li>Option 2: Up the right-facing dihedral to the ridge crest.</li>
+</ol>
+<p><img src="file:///c:/Users/EC/Documents/Climbing/Red Wall - Chasm View Wall -Longs/15.jpg" alt=""></p>
+<ol start="16">
+<li>Option 3: Left along the dark band to Broadway Ledge.</li>
+</ol>
+<img src="file:///c:/Users/EC/Documents/Climbing/Red Wall - Chasm View Wall -Longs/16.jpg" alt="16" height="500">
+<ol start="17">
+<li>We chose to go with Option 3, with plans to climb the Casual Route. This is looking back along the ledge system.</li>
+</ol>
+<img src="file:///c:/Users/EC/Documents/Climbing/Red Wall - Chasm View Wall -Longs/17.jpg" alt="17" height="500">
+<ol start="18">
+<li>From the left end of Chasm View Wall, it was just a 3rd class ramp down to Broadway.</li>
+</ol>
+<p><img src="file:///c:/Users/EC/Documents/Climbing/Red Wall - Chasm View Wall -Longs/18.jpg" alt=""></p>
+<h2 id="casual-route-madness">Casual Route madness</h2>
+<p>It was just after 11am when we got to the base of the Diamond on Broadway Ledge. Our plan was to climb the Casual Route after Red Wall. The last party of the Casual Route conga line had started up about an hour earlier. So we started up the Casual Route, feeling good about our time and the conditions. The first pitch is pretty easy and went quite quickly. But when I arrived at the belay at the top of the pitch, I encountered the party who had started up an hour earlier. The belayer assured me they would blast up the pitch and be out of our way in no time, but an hour later they were still blasting their way up Pitch 2. So Jenny and I decided to call it, in interest of getting out at a reasonable hour and climbing the next day. Too bad. We enjoyed a relaxing hike out.</p>
+<ol start="19">
+<li>Looking up the Casual Route. We were a bit worried about the giant icicles hanging down from the D1 chimney system high above, but now that the sun was off them, maybe they were not going to slough off.....</li>
+</ol>
+<p><img src="file:///c:/Users/EC/Documents/Climbing/Red Wall - Chasm View Wall -Longs/19.jpg" alt=""></p>
+<ol start="20">
+<li>Ice missiles.</li>
+</ol>
+<p><img src="file:///c:/Users/EC/Documents/Climbing/Red Wall - Chasm View Wall -Longs/20.jpg" alt=""></p>
+<ol start="21">
+<li>Looking up Pitch 2 of the Casual Route. The typical weekend conga line. We waited here for about an hour before deciding to bail.</li>
+</ol>
+<p><img src="file:///c:/Users/EC/Documents/Climbing/Red Wall - Chasm View Wall -Longs/21.jpg" alt=""></p>
+<ol start="22">
+<li>Rapping onto the Mills Glacier.</li>
+</ol>
+<img src="file:///c:/Users/EC/Documents/Climbing/Red Wall - Chasm View Wall -Longs/22.jpg" alt="22" height="500">
+<ol start="23">
+<li>Hiking out Chasm Lake Cirque.
+<img src="file:///c:/Users/EC/Documents/Climbing/Red Wall - Chasm View Wall -Longs/23.jpg" alt=""></li>
+</ol>
+
+</body>
+</html>
