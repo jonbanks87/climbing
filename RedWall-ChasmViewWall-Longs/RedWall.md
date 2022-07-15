@@ -1,7 +1,7 @@
 # Route: Red Wall (5.10b, 6p)
 ===========================
 
-This PDF was generated from Steph Abegg's beta on her excellent website: [stephabegg.com](stephabegg.com) 
+This PDF was generated from Steph Abegg's beta on her excellent website: [stephabegg.com](http://stephabegg.com) 
 
 [Direct link to original trip report.](https://sites.google.com/stephabegg.com/colorado/tripreports/cvw-redwall)
 
